@@ -1,0 +1,29 @@
+
+- User enters a city they want to travel to today
+    - Form box used for user to enter a city
+    - City entered gets saved as variable
+    - Use variable to create a queryURL for openweather
+    - Create function that fetches data from openweather
+    - Get data for: 
+        - City Name
+        - City Icon
+        - Temp
+        - Weather desc
+        - Windspeed
+        - Feelslike
+    - Append HTML section  with this data
+- Tripadvisor api 
+    - create queryurls for getting airport codes of both home and dest
+    - fetch both home and dest code and store in vars
+    - uses codes as params for getting flight info
+        - generate a flightinfo url
+        - fetch flight info of first 5 flights with url
+            - commerce provider
+            - flight provider
+            - flight price
+            - flight time
+            - flight link
+
+
+- Google maps updates to cities location
+- Save flights into local storage

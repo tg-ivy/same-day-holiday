@@ -1,0 +1,24 @@
+#map {
+    height: 500px;
+    width: 500px;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+}
+
+#info-container {
+    border: black 2px solid;
+    border-radius: 20px;
+    height: 300px; 
+}
+
+.city-name {
+    display: flex;
+}
+
+.weather-and-icon {
+    display: flex;
+}
+
