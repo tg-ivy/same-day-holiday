@@ -1,24 +1,152 @@
 #map {
     height: 500px;
     width: 500px;
+    display: none;
+}
+
+.navbar {
+    background-image: linear-gradient(to right,#f37923, #f1924e);
+    font-weight: 700;
+    font-style: italic;
+}
+
+.navbar-brand {
+    display: flex;
+    font-size: 40px;
+    align-items: center;
+    font-family: 'Lilita One', sans-serif;
+}
+
+.navbar-brand a {
+    box-shadow: 3px 5px 5px black
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#saved-button {
+    height: 40px;
+    width: 40px;
+}
+
+.navbar-brand img {
+    width: 50px;
+    height: 50px;
 }
 
 .card-container {
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 850px;
+    background-image: url("./img/thai-background.jpg");
 }
 
-#info-container {
-    border: black 2px solid;
+.card {
+    height: 450px;
+    padding: 20px;
     border-radius: 20px;
-    height: 300px; 
+    box-shadow: 1px 5px 5px black;
+}
+
+.card img {
+    border-radius: 0px;
+}
+
+input {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#search-button {
+    background-color: #f37923;
+    color: white;
+    border-color: rgb(190, 96, 28);
+}
+
+#city-section {
+    display: none;
+    background-color: #ecfffb;
+}
+
+.city-container {
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .city-name {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Lilita One', sans-serif;
+    margin-bottom: 20px;
+}
+
+#city-name {
+    font-size: 60px;
+    font-style: italic;
+}
+
+.city-name img {
+    width: 90px;
+    height: 90px;
+}
+
+#city-temp, #city-feelslike, #city-weather, #city-windspeed {
+    margin-bottom: 6px;
+    font-style: italic;
+}
+
+#city-icon-two {
+    width: 24px;
+    height: 24px;
 }
 
 .weather-and-icon {
     display: flex;
 }
 
+
+#flight-section {
+    background-color: #fad0b8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flight-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 1200px;
+    padding: 40px;
+}
+
+.flight-box {
+    display: flex;
+    padding: 15px;
+    gap: 5px
+}
+
+.flight-box div {
+    font-style: italic;
+    font-weight: 600;
+    padding: 3px;
+}
+
+.plane-icon {
+    width: 100px;
+    height: 100px;
+}
+
+.purchase-button, .save-button {
+    background-color: #f37923;
+    color: white;
+}

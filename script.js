@@ -58,6 +58,8 @@ const searchButton = document.getElementById('search-button')
 const homeInput = document.getElementById('home-input')
 
 // City Info
+citySection = document.getElementById("city-section")
+const cityContainer = document.getElementById("city-container")
 const cityName = document.getElementById('city-name');
 const cityIcon = document.getElementById('city-icon');
 const cityIconTwo = document.getElementById('city-icon-two');
@@ -102,7 +104,9 @@ function fetchOpData() {
     .then(function (data) {
         console.log(data);
 
-        cityName.textContent = "City Name: " + data.name;
+        citySection.style.display = "block";
+        cityContainer.classList.add("city-container");
+        cityName.textContent = data.name;
         cityTemp.textContent = "Temperature: " + data.main.temp + "°C"
         cityFeelsLike.textContent = "Feels Like: " + data.main.feels_like + "°C"
         cityWeather.textContent = "Weather: " + data.weather[0].description
@@ -172,8 +176,51 @@ function fetchFlightInfo() {
     })
     .then(function (data) {
         console.log(data);
+        for (i = 0; i < 6; i++) {
+            flightContainer.classList.add('flight-container');
+
+            let flightBox = document.createElement('div');
+            flightBox.classList.add("flight-box");
+
+            let planeIcon = document.createElement('img');
+            planeIcon.classList.add("plane-icon");
+            planeIcon.setAttribute('src', './img/plane-icon.png')
+            flightBox.appendChild(planeIcon);
+
+            let flightInfo = document.createElement('div');
+            flightBox.appendChild(flightInfo);
+
+            let flightSeller = document.createElement('div')
+            flightSeller.textContent = "Seller: " + data.data.flights[i].purchaseLinks[0].commerceName;
+            flightInfo.appendChild(flightSeller);
+
+            let flightProvider = document.createElement('div');
+            flightProvider.textContent = "Provider: " + data.data.flights[i].purchaseLinks[0].providerId;
+            flightInfo.appendChild(flightProvider);
+
+            let flightPrice = document.createElement('div');
+            flightPrice.textContent = "Price: $" + data.data.flights[i].purchaseLinks[0].totalPrice;
+            flightInfo.appendChild(flightPrice);
+
+            let flightLink =  document.createElement('a');
+            flightLink.setAttribute('href', data.data.flights[i].purchaseLinks[0].url);
+            flightInfo.appendChild(flightLink);
+
+            let flightButton = document.createElement('button');
+            flightButton.classList.add("purchase-button")
+            flightButton.textContent = "Purchase"
+            flightLink.appendChild(flightButton);
+
+            let saveButton = document.createElement('button');
+            saveButton.textContent = "Save"
+            saveButton.classList.add = "save-button"
+            flightInfo.appendChild(saveButton);
+
+            flightContainer.appendChild(flightBox);
+            
+
+        }
     })
-    
 };
 
 
