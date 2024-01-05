@@ -2,7 +2,7 @@
 
 ## Description
 
-This project uses mutiple server side APIs so create an app that takes two city inputs and returns flight data on routes between those city, alongside purchase links. These links take you to purchase portals.
+This project uses mutiple server side APIs so create an app that takes two city inputs and returns flight data on routes between those city, alongside purchase links as well as weather info in the destination city for the current day. These links take you to purchase portals.
 
 The app utilises local storage to allow the user to see their search history, use it to re-display any data previously shown.
 
