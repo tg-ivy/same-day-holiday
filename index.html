@@ -24,7 +24,9 @@
             <img src="./img/sun-icon-2.png" alt="A sun logo icon" width="30" height="30" class="d-inline-block align-text-top me-3">
             LAST-MINUTE-HOLIDAY!
           </a>
-          <img src="./img/saved-icon.png" alt="A saved icon" class="me-5" id="saved-button" >
+          <button type="button" class="btn btn-white contact-button" data-bs-toggle="modal" data-bs-target="#contactModal">
+            Contact
+          </button>
         </div>
       </nav>
 
@@ -35,8 +37,11 @@
             <h5 class="card-title mb-3">Which city would you like to go to?</h5>
             <input class="form-input weather-search mb-1" type="text" id="home-input" placeholder="From..."
                 aria-labelledby="form-heading" aria-controls="today forecast" />
-            <input class="form-input weather-search mb-5" type="text" id="destination-input" placeholder="To..."
+            <input class="form-input weather-search mb-3" type="text" id="destination-input" placeholder="To..."
                 aria-labelledby="form-heading" aria-controls="today forecast" />
+            <button type="button" class="btn btn-light mb-2" data-bs-toggle="modal" data-bs-target="#historyModal" id="history-modal-button">
+                  Search History
+            </button>
           <a href=#city-container class="btn btn-primary" id="search-button">Get last minute deals!</a>
         </div>
       </div>
@@ -63,19 +68,13 @@
 </div>
 
 <div class="container-fluid" id="flight-section">
+    <h3 id="flight-title">Flights</h3>
     <div id="flight-container">
         
     </div>
 </div>
 
 <div class="spinner-container" id="spinner-container"></div>
-
-<div class="history-container" id="history-container">
-    <h3>Search History</h3>
-    <div id="history-names">
-        
-    </div>
-</div>
 
 <div class="modal" tabindex="-1" id="my-modal">
     <div class="modal-dialog">
@@ -94,11 +93,40 @@
     </div>
   </div>
 
+  <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Contact Us</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <div class="modal fade" id="historyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Search History</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="history-modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <footer class="footer">© Last-Minute-Holiday!</footer>
-
-
-
 </body>
 </html>

@@ -36,6 +36,11 @@
     height: 50px;
 }
 
+.contact-button {
+    color: white;
+    font-weight: 500;
+}
+
 .card-container {
     display: flex;
     justify-content: center;
@@ -115,7 +120,8 @@ input {
 
 #flight-section {
     background-color: #fad0b8;
-    display: flex;
+    display: none;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -125,9 +131,17 @@ input {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    width: 1500px;
+    width: 1300px;
     padding: 40px;
 }
+
+#flight-section #flight-title {
+    font-family: 'Lilita One', sans-serif;
+    font-size: 60px;
+    font-style: italic;
+    padding-top: 30px;
+}
+
 
 .flight-box {
     display: flex;
@@ -176,20 +190,6 @@ input {
     to {
         transform: rotate(360deg)
     }
-}
-
-#history-container {
-    display: none;
-    padding: 50px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#history-names {
-    justify-content: flex;
-    gap: 20px;
-    flex-wrap: wrap;
 }
 
 footer {

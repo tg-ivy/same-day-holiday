@@ -15,6 +15,10 @@ tripOptions = {
 let userHome;
 let userSearch;
 let searchArr = [];
+if (localStorage.getItem("History")) {
+    searchArr = JSON.parse(localStorage.getItem("History"));
+};
+
 
 let opQueryURL;
 
@@ -53,14 +57,15 @@ const cityWindspeed = document.getElementById('city-windspeed');
 
 // Flights
 const flightContainer = document.getElementById('flight-container');
+const flightSection = document.getElementById('flight-section');
 
 // Spinner
 const spinnerContainer = document.getElementById('spinner-container');
 const spinner = document.createElement('div');
 
-// History 
-const historyContainer = document.getElementById('history-container');
-const historyNames = document.getElementById('history-names');
+// History Modal
+const historyModalButton = document.getElementById('history-modal-button');
+const historyModalBody = document.getElementById('history-modal-body');
 
 // --------------------------------------------------------- Functions -----------------------------------------------------
 
@@ -77,7 +82,6 @@ searchButton.addEventListener('click', (e) => {
     userSearch = destinationInput.value;
     
     addToHistory(userHome, userSearch);
-    appendHistory();
 
     spinnerContainer.style.display = "flex";
     spinner.classList.add('spinner');
@@ -117,7 +121,6 @@ function fetchOpData() {
         cityIcon.setAttribute('src', 'https://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png');
         cityIconTwo.setAttribute('src', 'https://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png');
 
-        historyContainer.style.display = "flex";
     })
 };
 
@@ -168,7 +171,7 @@ function fetchDestAirport() {
 // Function to create a URL to get flight info
 
 function createFlightURL(home, dest) {
-    flightInfoURL = 'https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights?sourceAirportCode=' + home + '&destinationAirportCode=' + dest + '&date=' + "2024-01-10" + '&itineraryType=ONE_WAY&sortOrder=PRICE&numAdults=1&numSeniors=0&classOfService=ECONOMY&pageNumber=1&currencyCode=USD'
+    flightInfoURL = 'https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights?sourceAirportCode=' + home + '&destinationAirportCode=' + dest + '&date=' + "2024-01-10" + '&itineraryType=ONE_WAY&sortOrder=PRICE&numAdults=1&numSeniors=0&classOfService=ECONOMY&pageNumber=1&currencyCode=GBP'
 }
 
 
@@ -181,7 +184,11 @@ function fetchFlightInfo() {
     })
     .then(function (data) {
         console.log(data);
-        for (i = 0; i < 6; i++) {
+        while (flightContainer.firstChild) {
+            flightContainer.removeChild(flightContainer.firstChild);
+        };
+        for (i = 0; i < data.data.flights.length; i++) {
+            flightSection.style.display = "flex";
             flightContainer.classList.add('flight-container');
 
             let flightBox = document.createElement('div');
@@ -195,17 +202,21 @@ function fetchFlightInfo() {
             let flightInfo = document.createElement('div');
             flightBox.appendChild(flightInfo);
 
-            let flightSeller = document.createElement('div')
-            flightSeller.textContent = "Seller: " + data.data.flights[i].purchaseLinks[0].commerceName;
-            flightInfo.appendChild(flightSeller);
-
             let flightProvider = document.createElement('div');
             flightProvider.textContent = "Provider: " + data.data.flights[i].purchaseLinks[0].providerId;
             flightInfo.appendChild(flightProvider);
 
             let flightPrice = document.createElement('div');
-            flightPrice.textContent = "Price: $" + data.data.flights[i].purchaseLinks[0].totalPrice;
+            flightPrice.textContent = "Price: £" + data.data.flights[i].purchaseLinks[0].totalPrice;
             flightInfo.appendChild(flightPrice);
+
+            let flightTime = document.createElement('div');
+            let myDateTime = data.data.flights[i].segments[0].legs[0].departureDateTime;
+            let myTimeWithZ = myDateTime.substr(11);
+            let myTime = myTimeWithZ.substr(0, myTimeWithZ.length - 4);
+            flightTime.textContent = "Time: " + myTime;
+            flightInfo.appendChild(flightTime);
+
 
             let flightLink =  document.createElement('a');
             flightLink.setAttribute('href', data.data.flights[i].purchaseLinks[0].url);
@@ -215,11 +226,6 @@ function fetchFlightInfo() {
             flightButton.classList.add("purchase-button")
             flightButton.textContent = "Purchase"
             flightLink.appendChild(flightButton);
-
-            let saveButton = document.createElement('button');
-            saveButton.textContent = "Save"
-            saveButton.classList.add = "save-button"
-            flightInfo.appendChild(saveButton);
 
             flightContainer.appendChild(flightBox);
             
@@ -239,22 +245,22 @@ function addToHistory(home, dest) {
     localStorage.setItem("History", JSON.stringify(searchArr));
 }
 
-// Function that appends history to history section
-function appendHistory() {
+
+// Event listener attatched to modal that displays search history
+historyModalButton.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    while (historyModalBody.firstChild) {
+        historyModalBody.removeChild(historyModalBody.firstChild);
+    };
+
     let historyArr = JSON.parse(localStorage.getItem("History"));
     for (i = 0; i < historyArr.length; i++) {
-        // Appends city to search history
-        let cityEl = document.createElement('div');
-        cityEl.textContent = historyArr[i];
-        historyNames.appendChild(cityEl);
-
-        // Adds event listener to each city element
-        cityEl.addEventListener('click', (e) => {
-            e.preventDefault();
-        })
-        
-    }
-}
+        let historyEl = document.createElement('p');
+        historyEl.textContent = historyArr[i];
+        historyModalBody.appendChild(historyEl);
+        }
+});
 
 
 // --------------------------------------------- Running Code -----------------------------------------------------------------------------------
