@@ -171,7 +171,7 @@ function fetchDestAirport() {
 // Function to create a URL to get flight info
 
 function createFlightURL(home, dest) {
-    flightInfoURL = 'https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights?sourceAirportCode=' + home + '&destinationAirportCode=' + dest + '&date=' + currentDate + '&itineraryType=ONE_WAY&sortOrder=PRICE&numAdults=1&numSeniors=0&classOfService=ECONOMY&pageNumber=1&currencyCode=GBP'
+    flightInfoURL = 'https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights?sourceAirportCode=' + home + '&destinationAirportCode=' + dest + '&date=' + "2024-01-10" + '&itineraryType=ONE_WAY&sortOrder=PRICE&numAdults=1&numSeniors=0&classOfService=ECONOMY&pageNumber=1&currencyCode=GBP'
 }
 
 
