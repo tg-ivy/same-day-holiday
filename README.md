@@ -26,7 +26,6 @@ Here is a screenshot of the live project:
 ## Credits
 
 edX Front-End Web Development Bootcamp
-OpenWeather API
 
 ## License
 
